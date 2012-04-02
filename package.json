@@ -15,6 +15,6 @@
   , "scripts": {
         "start": "./bin/dev.sh"
       , "test":  ""
-      , "deploy": "git push heroku master"
+      , "publish": "git push heroku master"
   }
 }
