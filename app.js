@@ -2,7 +2,7 @@ var express    = require('express')
   , routes     = require('./routes')
   , order_id   = require('./middleware/order_id')
   , product_id = require('./middleware/product_id')
-  , port       = require('./config').port;
+  , port     = require('./config').port;
 
 var app = express.createServer();
 app.configure(function(){
@@ -30,4 +30,4 @@ app.put('/order/:order_id', routes.orders.put);
 app.delete('/order/:order_id', routes.orders.remove);
 
 app.listen(port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("express-lane running on port %d", app.address().port);

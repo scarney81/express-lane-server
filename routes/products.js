@@ -1,4 +1,4 @@
-var products = require('./repositories/products');
+var products = require('../repositories/products');
 
 var handleResponse = function(res) {
 	return function(err, data) {

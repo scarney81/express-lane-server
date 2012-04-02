@@ -1,4 +1,4 @@
-var orders = require('./repositories/orders');
+var orders = require('../repositories/orders');
 
 var handleResponse = function(res) {
 	return function(err, data) {

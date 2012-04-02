@@ -10,9 +10,11 @@
   , "dependencies": {
         "express": "2.5.8"
       , "request": "2.9.153"
+      , "mongolian": "*"
   }
   , "scripts": {
         "start": "./bin/dev.sh"
       , "test":  ""
+      , "deploy": "git push heroku master"
   }
 }
