@@ -19,4 +19,4 @@
 
 ## Deploy To Heroku
     
-    $ npm publish
+    $ git push heroku master
