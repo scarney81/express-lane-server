@@ -1,9 +1,18 @@
 {
-    "name": "application-name"
+    "name": "express-lane"
   , "version": "0.0.1"
+  , "author": "Seth Carney <seth.carney@eloqua.com>"
   , "private": true
+  , "repository": {
+        "type": "git"
+      , "url":  "https://scarney81@github.com/scarney81/express-lane-server.git"
+  }
   , "dependencies": {
-      "express": "2.5.8"
-    , "jade": ">= 0.0.1"
+        "express": "2.5.8"
+      , "request": "2.9.153"
+  }
+  , "scripts": {
+        "start": "node app.js"
+      , "test":  ""
   }
 }

@@ -1,8 +1,7 @@
+var products = require('./products')
+  , orders   = require('./orders');
 
-/*
- * GET home page.
- */
-
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+module.exports = {
+	products: products,
+	orders: orders
 };
