@@ -20,14 +20,14 @@ app.get('/products', routes.products.all);
 app.post('/products', routes.products.post);
 app.get('/product/:product_id', routes.products.get);
 app.put('/product/:product_id', routes.products.put);
-app.delete('/product/:product_id', routes.products.remove);
+app.del('/product/:product_id', routes.products.remove);
 
 // order routes
 app.get('/orders', routes.orders.all);
 app.post('/orders', routes.orders.post);
 app.get('/order/:order_id', routes.orders.get);
 app.put('/order/:order_id', routes.orders.put);
-app.delete('/order/:order_id', routes.orders.remove);
+app.del('/order/:order_id', routes.orders.remove);
 
 app.listen(port);
 console.log("express-lane-server running on port %d", app.address().port);
