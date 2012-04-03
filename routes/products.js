@@ -24,14 +24,14 @@ module.exports = {
 		return res.json(req.product); 
 	},
 	put: function(req, res, next) {
-		var fields = ['field1', 'field2'];
+		var fields = ['name', 'description', 'price', 'image', 'in_stock'];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       req.product[key] = req.body[key];
     }
-    return req.product.save('products', req.product, handleResponse(res));
+    return req.product.save(handleResponse(res));
 	},
 	remove: function(req, res, next) {
-		return req.product.remove('products', handleResponse(res));
+		return req.product.remove(handleResponse(res));
 	}
 };
