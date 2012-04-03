@@ -1,10 +1,10 @@
-/*global describe, it */
+/*global describe, it, process */
 var should   = require('should')
   , Orders = require('../repositories/orders');
 
 describe('OrderRepository', function() {
 	
-	var config = {connectionString: 'mongodb://heroku_app3627039:5ujppsecj90u4432roiodv8opq@ds031567.mongolab.com:31567/heroku_app3627039'};
+	var config = {connectionString: process.env.MONGOLAB_URI};
 	var orders = new Orders(config);
 	
 	var model = {

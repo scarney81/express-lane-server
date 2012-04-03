@@ -16,6 +16,6 @@
   }
   , "scripts": {
         "start": "./bin/dev.sh"
-      , "test":  "mocha"
+      , "test":  "./bin/test.sh"
   }
 }
