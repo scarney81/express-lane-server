@@ -1,6 +1,6 @@
-var config = require('../config');
-var Products = require('../repositories/products');
-var products = new Products(config);
+var config = require('../config')
+  , Products = require('../repositories/products')
+  , products = new Products(config);
 
 module.exports = function(req, res, next, id) {
 	return products.single(id, function(err, product) {

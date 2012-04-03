@@ -19,8 +19,7 @@
 ## Test
 
 ```bash
-    $ npm install mocha -g
-    $ mocha
+    $ npm test
 ```
 
 ## Run It
@@ -28,11 +27,4 @@
 ```bash
     $ npm start
     $ open http://localhost:3000
-```
-
-
-## Deploy It
-    
-```bash
-    $ git push heroku master
-```    
+```   

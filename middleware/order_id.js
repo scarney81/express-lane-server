@@ -1,4 +1,6 @@
-var orders = require('../repositories/repository');
+var config = require('../config')
+  , Orders = require('../repositories/orders')
+  , orders = new Orders(config);
 
 module.exports = function(req, res, next, id) {
 	return orders.single('orders', id, function(err, order) {
