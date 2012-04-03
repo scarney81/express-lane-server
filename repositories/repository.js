@@ -42,7 +42,7 @@ module.exports = {
 		var entities = db.collection(collection);
 		return entities.save(model, function(err, result) {
 	    if (err !== null) return callback(err);
-	    //result._id = result._id.toString();
+	    result._id = result._id.toString();
 	    return callback(null, result);
 	  });
 	},
