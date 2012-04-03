@@ -1,4 +1,8 @@
-var config = require('../config')
-	, Repository = require('./repository');
+var Repository = require('./repository');
 	
-module.exports = new Repository(config, 'products');
+var ProductRepository = function(config) {
+	Repository.call(this, config, 'products');
+};
+
+require('util').inherits(ProductRepository, Repository);
+module.exports = ProductRepository;

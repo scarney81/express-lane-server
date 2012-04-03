@@ -11,6 +11,8 @@
         "express": "2.5.8"
       , "request": "2.9.153"
       , "mongolian": "*"
+      , "mocha": ">= 0.13.0"
+      , "should": ">= 0.5.1"
   }
   , "scripts": {
         "start": "./bin/dev.sh"

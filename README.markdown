@@ -1,6 +1,6 @@
 # express-lane-server
 
-## Getting the Code
+## Get the Code
 
 ```bash
     $ git clone git@github.com:scarney/express-lane-server.git
@@ -16,7 +16,14 @@
     $ Enter your MongoLab connection string in to dev.sh
 ```
 
-## Running The Application
+## Test
+
+```bash
+    $ npm install mocha -g
+    $ mocha
+```
+
+## Run It
 
 ```bash
     $ npm start
@@ -24,7 +31,7 @@
 ```
 
 
-## Deploy To Heroku
+## Deploy It
     
 ```bash
     $ git push heroku master
