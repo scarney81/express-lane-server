@@ -24,6 +24,7 @@ module.exports = {
 		return res.json(req.product); 
 	},
 	put: function(req, res, next) {
+		console.log(req.product);
 		var fields = ['field1', 'field2'];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];

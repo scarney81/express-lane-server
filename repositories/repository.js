@@ -51,6 +51,7 @@ module.exports = {
 	  if (id === null) throw 'no model specified';
 	  var db = new Mongolian(config.connectionString);
 		var entities = db.collection(collection);
+		console.log(id);
 		return entities.remove({_id: new ObjectId(id)}, callback);
 	}
 };
