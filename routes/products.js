@@ -1,4 +1,4 @@
-var products = require('../repositories/repository');
+var products = require('../repositories/products');
 var fields = ['name', 'description', 'price', 'image', 'in_stock'];
 
 var handleResponse = function(res) {
@@ -9,8 +9,8 @@ var handleResponse = function(res) {
 };
 
 module.exports = {
-	index: function(req, res, next) { 
-		return products.all('products', handleResponse(res));
+	all: function(req, res, next) { 
+		return products.all(handleResponse(res));
 	},
 	post: function(req, res, next) {
 		var product = {};
@@ -18,7 +18,7 @@ module.exports = {
       var key = fields[i];
       product[key] = req.body[key];
     }
-    return products.save('products', product, handleResponse(res));
+    return products.save(product, handleResponse(res));
 	},
 	get: function(req, res, next) { 
 		return res.json(req.product); 
