@@ -12,7 +12,19 @@ describe('ProductRepository', function() {
 		description: 'fake description',
 		price: 10.50,
 		image: 'http://someurl/some.jpg',
-		in_stock: 10
+		in_stock: 10,
+		reviews: [
+			{
+				text: 'fakeName is great!!',
+				rating: 5,
+				email_address: 'somefake@email.com'
+			},
+			{
+				text: 'fakeName is terrible!!',
+				rating: 0,
+				email_address: 'someotherfake@email.com'				
+			}
+		]
 	};
 
 	it('should create a product', function(done) {
