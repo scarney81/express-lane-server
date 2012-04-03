@@ -13,16 +13,11 @@
 ```bash
     $ cd bin
     $ cp dev.example.sh dev.sh
-    $ Enter your MongoLab connection string in to dev.sh
+    $ cp test.example.sh test.sh
+    $ Enter your MongoLab connection string in to dev.sh and test.sh
 ```
 
 ## Test
-
-```bash
-    $ cd bin
-    $ cp test.example.sh test.sh
-    $ Enter your MongoLab connection string in to test.sh
-```
 
 ```bash
     $ npm test
