@@ -24,13 +24,12 @@ module.exports = {
 		return res.json(req.product); 
 	},
 	put: function(req, res, next) {
-		console.log(req.product);
 		var fields = ['field1', 'field2'];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       req.product[key] = req.body[key];
     }
-    return req.product.save('products', handleResponse(res));
+    return req.product.save('products', req.product, handleResponse(res));
 	},
 	remove: function(req, res, next) {
 		return req.product.remove('products', handleResponse(res));
