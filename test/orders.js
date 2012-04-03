@@ -8,7 +8,7 @@ describe('OrderRepository', function() {
 	var orders = new Orders(config);
 	
 	var model = {
-		email_address: 'email@email.com',
+		email: 'email@email.com',
 		status: 'pending',
 		products: [
 			{
@@ -58,19 +58,19 @@ describe('OrderRepository', function() {
 			
 			should.exist(order);
 			order.should.have.property('_id');
-			order.email_address.should.equal(model.email_address);
+			order.email.should.equal(model.email);
 			done();
 		});
 	});
 	
 	it('should update an order', function(done) {
-		model.email_address = 'another@node.com';
+		model.email = 'another@node.com';
 		orders.save(model, function(err, order) {
 			if (err) return done(err);
 			
 			should.exist(order);
 			order.should.have.property('_id');
-			order.email_address.should.equal('another@node.com');
+			order.email.should.equal('another@node.com');
 			done();
 		});
 	});

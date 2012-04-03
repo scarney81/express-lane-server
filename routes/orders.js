@@ -32,5 +32,10 @@ module.exports = {
 	},
 	remove: function(req, res, next) {
 		return req.order.remove(handleResponse(res));
+	},
+	complete: function(req, res, next) {
+		if (req.order.status === 'complete') return next('order has already been completed');
+		req.order.status = 'complete';
+		req.order.save(handleResponse(res));
 	}
 };

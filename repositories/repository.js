@@ -26,11 +26,9 @@ Repository.prototype.single = function(id, callback) {
 	if (callback === null) throw 'no callback specified';
 
 	var _this = this;
-	return this.collection.findOne({
-    _id: new ObjectId(id)
-  }, function(err, item) {
+	return this.collection.findOne({_id: new ObjectId(id)}, function(err, item) {
     if (err !== null) return callback(err);
-		if (item === undefined) return callback(null, null);
+		if (item === 'undefined') return callback(null, null);
     item._id = item._id.toString();
 		item.save = function(cb) { _this.save(item, cb); };
 		item.remove = function(cb) { _this.remove(item._id, cb); };
