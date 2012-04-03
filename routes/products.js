@@ -1,4 +1,5 @@
 var products = require('../repositories/repository');
+var fields = ['name', 'description', 'price', 'image', 'in_stock'];
 
 var handleResponse = function(res) {
 	return function(err, data) {
@@ -13,7 +14,6 @@ module.exports = {
 	},
 	post: function(req, res, next) {
 		var product = {};
-		var fields = ['name', 'description', 'price', 'image', 'in_stock'];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       product[key] = req.body[key];
@@ -24,8 +24,7 @@ module.exports = {
 		return res.json(req.product); 
 	},
 	put: function(req, res, next) {
-		var fields = ['name', 'description', 'price', 'image', 'in_stock'];
-    for (var i = 0;i < fields.length; i++) {
+   for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       req.product[key] = req.body[key];
     }

@@ -1,4 +1,5 @@
 var orders = require('../repositories/repository');
+var fields = [];
 
 var handleResponse = function(res) {
 	return function(err, data) {
@@ -13,7 +14,6 @@ module.exports = {
 	},
 	post: function(req, res, next) {
 		var order = {};
-		var fields = [];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       order[key] = req.body[key];
@@ -24,14 +24,13 @@ module.exports = {
 		res.json(req.order); 
 	},
 	put: function(req, res, next) {
-		var fields = ['field1', 'field2'];
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
       req.order[key] = req.body[key];
     }
-    return req.order.save('orders', handleResponse(res));
+    return req.order.save(handleResponse(res));
 	},
 	remove: function(req, res, next) {
-		return req.order.remove('orders', handleResponse(res));
+		return req.order.remove(handleResponse(res));
 	}
 };
