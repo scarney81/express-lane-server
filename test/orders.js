@@ -52,6 +52,15 @@ describe('OrderRepository', function() {
 		});
 	});
 	
+	it('should retrieve all orders', function(done) {
+		orders.all(function(err, orders) {
+			should.not.exist(err);
+			should.exist(orders);
+			orders.length.should.equal(1);
+			done();
+		});
+	});
+	
 	it('should retreive an order', function(done) {
 		orders.single(model._id, function(err, order) {
 			if (err) return done(err);
@@ -85,19 +94,25 @@ describe('OrderRepository', function() {
 	});
 	
 	it('should mark order complete', function(done) {
-		orders.complete(model._id, function(err, order) {
+		orders.single(model._id, function(err, order) {
+			if (err) return done(err);
+			order.complete(function(err, updated) {
 				if (err) return done(err);
-				
-				should.exist(order);
-				order.status.should.equal('complete');
+				should.exist(updated);
+				updated.status.should.equal('complete');
 				done();
+			});
 		});
 	});
 	
 	it('should not mark order complete', function(done) {
-		orders.complete(model._id, function(err, order) {
+		orders.single(model._id, function(err, order) {
+			if (err) return done(err);
+			order.complete(function(err, updated) {
 				should.exist(err);
+				should.not.exist(updated);
 				done();
+			});
 		});
 	});
 		

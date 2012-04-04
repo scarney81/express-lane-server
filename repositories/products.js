@@ -1,22 +1,15 @@
 var Repository = require('./repository');
 	
-var ProductRepository = function(config) {
-	Repository.call(this, config, 'products');
-};
-require('util').inherits(ProductRepository, Repository);
-
-ProductRepository.prototype.addReview = function(id, review, callback) {
-	if (review === null) throw 'no review provided';
-	if (callback === null) throw 'no callback provided';
-	
-	this.single(id, function(err, order) {
-		if (err !== null) return callback(err);
-		if (order === null) return callback(null, null);
-		
-		if (!order.reviews) order.reviews = [];
-		order.reviews.push(review);
-		return order.save(callback);
-	});
+var productRepository = {
+	single: function(product, callback) {
+		if (product === null) return callback(null, null);
+		product.addReview = function(review, cb) {
+			if (!this.reviews) this.reviews = [];
+			this.reviews.push(review);
+			return product.save(cb);
+		};
+		return callback(null, product);
+	}
 };
 
-module.exports = ProductRepository;
+module.exports = function(config) { return new Repository(config, 'products', productRepository); };

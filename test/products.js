@@ -35,7 +35,6 @@ describe('ProductRepository', function() {
 	it('should retreive a product', function(done) {
 		products.single(model._id, function(err, product) {
 			if (err) return done(err);
-			
 			should.exist(product);
 			product.should.have.property('_id');
 			product.name.should.equal(model.name);
@@ -63,11 +62,13 @@ describe('ProductRepository', function() {
 			rating: 0,
 			email_address: 'someotherfake@email.com'				
 		};
-		products.addReview(model._id, review, function(err, product) {
-			should.not.exist(err);
-			should.exist(product);
-			product.reviews.length.should.equal(2);
-			done();
+		products.single(model._id, function(err, product) {
+			if (err) return done(err);
+			
+			product.addReview(review, function(err, product) {
+				product.reviews.length.should.equal(2);
+				done();
+			});
 		});
 	});
 		
