@@ -1,4 +1,6 @@
-var orders = require('../repositories/orders');
+var config = require('../config');
+var Orders = require('../repositories/orders');
+var orders = new Orders(config);
 var fields = [];
 
 var handleResponse = function(res) {
@@ -9,8 +11,9 @@ var handleResponse = function(res) {
 };
 
 module.exports = {
-	all: function(req, res, next) { 
-		return orders.all(handleResponse(res));
+	all: function(req, res, next) {
+		var email = req.query.email;
+		return email ? orders.findByEmail(email, handleResponse(res)) : orders.all(handleResponse(res));
 	},
 	post: function(req, res, next) {
 		var order = {};

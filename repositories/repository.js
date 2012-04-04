@@ -1,13 +1,6 @@
 var Mongolian = require('mongolian')
   , ObjectId = Mongolian.ObjectId;
 
-var updateObjectIds = function(array, callback) {
-	return callback(array.map(function(item) {
-  	if (item._id) item._id = item._id.toString();
-   	return item;
-	}));
-};
-
 var Repository = function(config, collection) {
 	var db = new Mongolian(config.connectionString);
 	this.collection = db.collection(collection);
@@ -16,9 +9,10 @@ var Repository = function(config, collection) {
 Repository.prototype.all = function(callback) {
   if (callback === null) throw 'no callback specified';
 	
+	var _this = this;
 	return this.collection.find().toArray(function(err, array) {
     if (err !== null) return callback(err);
-    return updateObjectIds(array, function(array) { return callback(null, array); });
+    return _this.updateObjectIds(array, function(array) { return callback(null, array); });
   });
 };
 
@@ -53,6 +47,13 @@ Repository.prototype.remove = function(id, callback) {
   if (id === null) throw 'no model specified';
 
 	return this.collection.remove({_id: new ObjectId(id)}, callback);
+};
+
+Repository.prototype.updateObjectIds = function(array, callback) {
+	return callback(array.map(function(item) {
+  	if (item._id) item._id = item._id.toString();
+   	return item;
+	}));
 };
 
 module.exports = Repository;

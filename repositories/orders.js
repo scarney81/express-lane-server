@@ -7,9 +7,10 @@ var OrderRepository = function(config) {
 require('util').inherits(OrderRepository, Repository);
 
 OrderRepository.prototype.findByEmail = function(email, callback) {
+	var _this = this;
 	this.collection.find({email: email}).toArray(function(err, response) {
 		if (err !== null) return callback(err);
-		callback(null, response);
+		return _this.updateObjectIds(response, function(array) { return callback(null, array); });
 	});
 };
 
