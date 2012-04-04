@@ -18,11 +18,6 @@ describe('ProductRepository', function() {
 				text: 'fakeName is great!!',
 				rating: 5,
 				email_address: 'somefake@email.com'
-			},
-			{
-				text: 'fakeName is terrible!!',
-				rating: 0,
-				email_address: 'someotherfake@email.com'				
 			}
 		]
 	};
@@ -58,6 +53,20 @@ describe('ProductRepository', function() {
 			product.should.have.property('_id');
 			product.name.should.equal('foobarBaz');
 			product.price.should.equal(1.50);
+			done();
+		});
+	});
+	
+	it('should add review', function(done) {
+		var review = {
+			text: 'fakeName is terrible!!',
+			rating: 0,
+			email_address: 'someotherfake@email.com'				
+		};
+		products.addReview(model._id, review, function(err, product) {
+			should.not.exist(err);
+			should.exist(product);
+			product.reviews.length.should.equal(2);
 			done();
 		});
 	});

@@ -34,5 +34,13 @@ module.exports = {
 	},
 	remove: function(req, res, next) {
 		return req.product.remove(handleResponse(res));
+	},
+	addReview: function(req, res, next) {
+		var review = {};
+		for (var i = 0;i < fields.length; i++) {
+      var key = fields[i];
+      review[key] = req.body[key];
+    }
+		req.product.addReview(review, handleResponse(res));
 	}
 };
