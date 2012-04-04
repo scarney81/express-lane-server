@@ -18,4 +18,5 @@
         "start": "./bin/dev.sh"
       , "test":  "./bin/test.sh"
   }
+  , "engine": "node ~> 0.6.11"
 }
