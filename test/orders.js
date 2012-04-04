@@ -63,6 +63,15 @@ describe('OrderRepository', function() {
 		});
 	});
 	
+	it('should retrieve a list of orders by email', function(done) {
+		orders.findByEmail('email@email.com', function(err, orders) {
+			should.not.exist(err);
+			should.exist(orders);
+			orders.length.should.equal(1);
+			done();
+		});
+	});
+	
 	it('should update an order', function(done) {
 		model.email = 'another@node.com';
 		orders.save(model, function(err, order) {
