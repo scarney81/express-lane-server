@@ -1,6 +1,4 @@
-var config = require('../config')
-  , Orders = require('../repositories/orders')
-  , orders = new Orders(config);
+var orders = require('../repositories/orders');
 
 module.exports = function(req, res, next, id) {
 	return orders.single(id, function(err, order) {

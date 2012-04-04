@@ -1,12 +1,9 @@
 /*global describe, it, process */
 var should   = require('should')
-  , Products = require('../repositories/products');
+  , products = require('../repositories/products');
 
 describe('ProductRepository', function() {
-	
-	var config = {connectionString: process.env.MONGOLAB_URI};
-	var products = new Products(config);
-	
+		
 	var model = {
 		name: 'fakeName', 
 		description: 'fake description',

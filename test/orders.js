@@ -1,11 +1,8 @@
 /*global describe, it, process */
 var should   = require('should')
-  , Orders = require('../repositories/orders');
+  , orders = require('../repositories/orders');
 
 describe('OrderRepository', function() {
-	
-	var config = {connectionString: process.env.MONGOLAB_URI};
-	var orders = new Orders(config);
 	
 	var model = {
 		email: 'email@email.com',

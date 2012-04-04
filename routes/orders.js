@@ -1,6 +1,4 @@
-var config = require('../config');
-var Orders = require('../repositories/orders');
-var orders = new Orders(config);
+var orders = require('../repositories/orders');
 var fields = [];
 
 var handleResponse = function(res) {

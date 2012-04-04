@@ -1,3 +1,4 @@
+var config     = require('../config');
 var Repository = require('./repository');
 
 var orderRepository = {
@@ -19,4 +20,4 @@ var orderRepository = {
 	}
 };
 
-module.exports = function(config) {	return new Repository(config, 'orders', orderRepository); };
+module.exports = new Repository(config, 'orders', orderRepository); 

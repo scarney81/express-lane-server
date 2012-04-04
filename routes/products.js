@@ -1,6 +1,4 @@
-var config = require('../config');
-var Products = require('../repositories/products');
-var products = new Products(config);
+var products = require('../repositories/products');
 var fields = ['name', 'description', 'price', 'image', 'in_stock'];
 
 var handleResponse = function(res) {
