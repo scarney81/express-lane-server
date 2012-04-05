@@ -1,0 +1,13 @@
+curl http://localhost:3000/products -X POST -H "content-type: application/json" -d '{"name":"test product name", "description": "seths test product for testing tests", "price": "60.00", "in_stock": "100", "image": "http://www.eloqua.com"}'
+
+curl http://localhost:3000/product/4f7cf13b0000005316000006 -X PUT -H "content-type: application/json" -d '{"name":"TEST PRODUCT", "description": "SETH TEST PRODUCT", "price": "1000.00", "in_stock": "1", "image": "http://www.expressjs.com"}'
+
+curl http://localhost:3000/product/4f7cf13b0000005316000006/review -X POST -H "content-type: application/json" -d '{"text":"GREAT PRODUCT", "rating": "5", "email_address": "fake@node.com"}'
+
+curl http://localhost:3000/product/4f7cf13b0000005316000006/review -X DELETE
+
+curl http://localhost:3000/orders -X POST -H "content-type: application/json" -d '{"email": "email@email.com", "products": [{"quantity": "1","price": "1.50","name": "product 1","image": "http://someimage/"}], "total_price": "22.50", "billing": {"cc_no": "1234567898765432",	"exp_date": "01/2012", "cvs": "123", "name": "some cardholder",	"zip": "12345"}, "shipping": {	"address": "1234 apple lane",	"city": "arlington", "state": "va",	"zip": "12345" }}'
+
+curl http://localhost:3000/order/4f7cf4110000005316000007 -X PUT -H "content-type: application/json" -d '{"email": "bah@foo.com", "products": [{"quantity": "1","price": "1.50","name": "product 1","image": "http://someimage/"}], "total_price": "22.50", "billing": {"cc_no": "999999999999",	"exp_date": "01/2012", "cvs": "123", "name": "some cardholder",	"zip": "12345"}, "shipping": {	"address": "1234 apple lane",	"city": "crystal city", "state": "va",	"zip": "12345" }}'
+
+curl http://localhost:3000/order/4f7cf4110000005316000007 -X DELETE

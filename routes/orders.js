@@ -1,5 +1,5 @@
 var orders = require('../repositories/orders');
-var fields = [];
+var fields = ['email', 'products', 'total_price', 'billing', 'shipping'];
 
 var handleResponse = function(res) {
 	return function(err, data) {
@@ -19,6 +19,7 @@ module.exports = {
       var key = fields[i];
       order[key] = req.body[key];
     }
+		order.status = 'pending';
     return orders.save(order, handleResponse(res));
 	},
 	get: function(req, res, next) { 

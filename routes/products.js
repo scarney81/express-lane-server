@@ -1,5 +1,6 @@
 var products = require('../repositories/products');
-var fields = ['name', 'description', 'price', 'image', 'in_stock'];
+var fields = ['name', 'description', 'price', 'image', 'in_stock', 'reviews'];
+var review_fields = ['text', 'email_address', 'rating'];
 
 var handleResponse = function(res) {
 	return function(err, data) {
@@ -13,6 +14,7 @@ module.exports = {
 		return products.all(handleResponse(res));
 	},
 	post: function(req, res, next) {
+		console.log(req.body);
 		var product = {};
     for (var i = 0;i < fields.length; i++) {
       var key = fields[i];
@@ -35,8 +37,8 @@ module.exports = {
 	},
 	addReview: function(req, res, next) {
 		var review = {};
-		for (var i = 0;i < fields.length; i++) {
-      var key = fields[i];
+		for (var i = 0;i < review_fields.length; i++) {
+      var key = review_fields[i];
       review[key] = req.body[key];
     }
 		req.product.addReview(review, handleResponse(res));
