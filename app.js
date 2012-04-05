@@ -21,7 +21,7 @@ app.get('/product/:product_id', routes.products.get);
 app.put('/product/:product_id', routes.products.put);
 app.del('/product/:product_id', routes.products.remove);
 
-app.post('/product/:product_id/review', routes.products.addReview);
+app.post('/product/:product_id/reviews', routes.products.addReview);
 
 // order routes
 app.get('/orders', routes.orders.all);
