@@ -1,7 +1,7 @@
 {
     "name": "express-lane-server"
   , "version": "0.0.1"
-  , "author": "Seth Carney <scarney81@gmail.com>"
+  , "author": "Troy Goode [troygoode@gmail.com] & Seth Carney [scarney81@gmail.com]"
   , "private": true
   , "repository": {
         "type": "git"
