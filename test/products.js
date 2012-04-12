@@ -1,6 +1,7 @@
 /*global describe, it, process */
 var should   = require('should')
-, products = require('../repositories/products');
+  , config   = require('../config')
+  , products = new require('../repositories/products')(config);
 
 describe('ProductRepository', function() {
 

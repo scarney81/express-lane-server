@@ -1,8 +1,18 @@
-var express    = require('express')
-  , routes     = require('./routes')
-  , order_id   = require('./middleware/order_id')
-  , product_id = require('./middleware/product_id')
-  , port       = require('./config').port;
+var express = require('express')
+  , config = require('./config')
+  , port = config.port
+  , repos = {
+      products: new require('./repositories/products')(config),
+      orders: new require('./repositories/orders')(config)
+  }
+  , routes = {
+      products: require('./routes/products')(repos.products),
+      orders: require('./routes/orders')(repos.orders)
+  }
+  , middleware = {
+      order_id: require('./middleware/order_id')(repos.orders),
+      product_id: require('./middleware/product_id')(repos.products)
+  };
 
 var app = express.createServer();
 app.configure(function(){
@@ -12,8 +22,8 @@ app.configure(function(){
 });
 
 //middleware
-app.param('product_id', product_id);
-app.param('order_id', order_id);
+app.param('product_id', middleware.product_id);
+app.param('order_id', middleware.order_id);
 
 // product routes
 app.get('/products', routes.products.all);
@@ -21,14 +31,12 @@ app.post('/products', routes.products.post);
 app.get('/product/:product_id', routes.products.get);
 app.put('/product/:product_id', routes.products.put);
 app.del('/product/:product_id', routes.products.remove);
-
 app.post('/product/:product_id/reviews', routes.products.addReview);
 
 // order routes
 app.get('/orders', routes.orders.all);
 app.post('/orders', routes.orders.post);
 app.get('/order/:order_id', routes.orders.get);
-
 app.post('/order/:order_id/complete', routes.orders.complete);
 
 app.listen(port);

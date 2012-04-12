@@ -1,6 +1,7 @@
 /*global describe, it, process */
 var should   = require('should')
-, orders = require('../repositories/orders');
+  , config   = require('../config')
+  , orders   = new require('../repositories/orders')(config);
 
 describe('OrderRepository', function() {
 
