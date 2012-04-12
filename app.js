@@ -1,18 +1,8 @@
 var express = require('express')
   , config = require('./config')
   , port = config.port
-  , repos = {
-      products: new require('./repositories/products')(config),
-      orders: new require('./repositories/orders')(config)
-  }
-  , routes = {
-      products: require('./routes/products')(repos.products),
-      orders: require('./routes/orders')(repos.orders)
-  }
-  , middleware = {
-      order_id: require('./middleware/order_id')(repos.orders),
-      product_id: require('./middleware/product_id')(repos.products)
-  };
+  , routes = require('./routes')
+  , middleware = require('./middleware');
 
 var app = express.createServer();
 app.configure(function(){
