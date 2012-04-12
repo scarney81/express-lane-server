@@ -4,7 +4,7 @@ module.exports = function(orders) {
       if (!((err !== null) || (order !== null))) return res.send("order not found", 404);
       if (err !== null) return res.send(err, 500);
       req.order = order;
-      return next();
+      next();
     });
   };
 };

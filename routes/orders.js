@@ -2,8 +2,11 @@ var fields = ['email', 'products', 'total_price', 'billing', 'shipping'];
 
 var respond = function(res) {
   return function(err, data) {
-    if (err !== null) return res.send(err, 500);
-    return res.json(data);
+    if (err !== null) { 
+      res.send(err, 500);
+    } else {
+      res.json(data);
+    }
   };
 };
 
@@ -12,7 +15,11 @@ module.exports = function(orders) {
 
     all: function(req, res, next) {
       var email = req.query.email;
-      return email ? orders.findByEmail(email, respond(res)) : orders.all(respond(res));
+      if (email) {
+        orders.findByEmail(email, respond(res));
+      } else {
+        orders.all(respond(res));
+      }
     },
     post: function(req, res, next) {
       var order = {};
@@ -21,7 +28,7 @@ module.exports = function(orders) {
         order[key] = req.body[key];
       }
       order.status = 'pending';
-      return orders.save(order, respond(res));
+      orders.save(order, respond(res));
     },
     get: function(req, res, next) { 
       res.json(req.order); 
