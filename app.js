@@ -1,8 +1,14 @@
-var express = require('express')
-  , config = require('./config')
-  , port = config.port
-  , routes = require('./routes')
-  , middleware = require('./middleware');
+var express = require('express'),
+    config = require('./config'),
+    port = config.port,
+    repositories = {
+      Products: require('./repositories/products'),
+      Orders: require('./repositories/orders')
+    },
+    routes = {
+      products: require('./routes/products')(new repositories.Products(config)),
+      orders: require('./routes/orders')(new repositories.Orders(config))
+    };
 
 var app = express.createServer();
 app.configure(function(){
@@ -12,8 +18,8 @@ app.configure(function(){
 });
 
 //middleware
-app.param('product_id', middleware.product_id);
-app.param('order_id', middleware.order_id);
+app.param('product_id', require('./middleware/product_id'));
+app.param('order_id', require('./middleware/order_id'));
 
 // product routes
 app.get('/products', routes.products.all);
