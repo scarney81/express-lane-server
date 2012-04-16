@@ -1,16 +1,7 @@
 var express = require('express'),
-    config = require('./config'),
-    port = config.port,
-    repositories = {
-      Products: require('./repositories/products'),
-      Orders: require('./repositories/orders')
-    },
-    routes = {
-      products: require('./routes/products')(new repositories.Products(config)),
-      orders: require('./routes/orders')(new repositories.Orders(config))
-    },
-    order_id = require('./middleware/order_id')(new repositories.Orders(config)),
-    product_id = require('./middleware/product_id')(new repositories.Products(config));
+    port = require('./config').port,
+    middleware = require('./middleware'),
+    routes = require('./routes');
 
 var app = express.createServer();
 app.configure(function(){
@@ -20,8 +11,8 @@ app.configure(function(){
 });
 
 //middleware
-app.param('product_id', product_id);
-app.param('order_id', order_id);
+app.param('product_id', middleware.product_id);
+app.param('order_id', middleware.order_id);
 
 // product routes
 app.get('/products', routes.products.all);
