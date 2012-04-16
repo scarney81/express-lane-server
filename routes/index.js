@@ -1,10 +1,10 @@
 var config = require('../config'),
     Products = require('../repositories/products'),
     Orders = require('../repositories/orders'),
-    products = require('./products')(new Products(config)),
-    orders = require('./orders')(new Orders(config));
+    products = require('./products'),
+    orders = require('./orders');
     
-module.exports = {
-  orders: orders,
-  products: products
+module.exports = {  
+  orders: function(app) { return orders(app, new Orders(config)); },
+  products: function(app) { return products(app, new Products(config)); }
 };
