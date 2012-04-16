@@ -54,22 +54,6 @@ describe('ProductRepository', function() {
     });
   });
 
-  it('should add review', function(done) {
-    var review = {
-      text: 'fakeName is terrible!!',
-      rating: 0,
-      email_address: 'someotherfake@email.com'				
-    };
-    products.single(model._id, function(err, product) {
-      if (err) return done(err);
-
-      product.addReview(review, function(err, product) {
-        product.reviews.length.should.equal(2);
-        done();
-      });
-    });
-  });
-
   it('should remove a product', function(done) {
     products.remove(model._id, function(err, response) {
       if (err) return done(err);

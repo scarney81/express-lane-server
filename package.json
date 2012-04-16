@@ -9,7 +9,7 @@
   }
   , "dependencies": {
         "express": "2.5.8"
-      , "request": "2.9.153"
+      , "request": "2.9.x"
       , "mongolian": "*"
       , "mocha": ">= 0.13.0"
       , "should": ">= 0.5.1"

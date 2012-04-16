@@ -91,29 +91,6 @@ describe('OrderRepository', function() {
     });
   });
 
-  it('should mark order complete', function(done) {
-    orders.single(model._id, function(err, order) {
-      if (err) return done(err);
-      order.complete(function(err, updated) {
-        if (err) return done(err);
-        should.exist(updated);
-        updated.status.should.equal('complete');
-        done();
-      });
-    });
-  });
-
-  it('should not mark order complete', function(done) {
-    orders.single(model._id, function(err, order) {
-      if (err) return done(err);
-      order.complete(function(err, updated) {
-        should.exist(err);
-        should.not.exist(updated);
-        done();
-      });
-    });
-  });
-
   it('should remove an order', function(done) {
     orders.remove(model._id, function(err, response) {
       response.should.equal(1);

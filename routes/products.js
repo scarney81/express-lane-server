@@ -1,5 +1,5 @@
-var fields = ['name', 'description', 'price', 'image', 'in_stock', 'reviews'];
-var review_fields = ['text', 'email_address', 'rating'];
+var white_list = ['name', 'description', 'price', 'image', 'in_stock', 'reviews'];
+var review_white_list = ['text', 'email_address', 'rating'];
 
 var respond = function(res) {
   return function(err, data) {
@@ -19,8 +19,8 @@ module.exports = function(products) {
     },
     post: function(req, res, next) {
       var product = {};
-      for (var i = 0;i < fields.length; i++) {
-        var key = fields[i];
+      for (var i = 0; i < white_list.length; i++) {
+        var key = white_list[i];
         product[key] = req.body[key];
       }
       products.save(product, respond(res));
@@ -29,8 +29,8 @@ module.exports = function(products) {
       res.json(req.product); 
     },
     put: function(req, res, next) {
-      for (var i = 0;i < fields.length; i++) {
-        var key = fields[i];
+      for (var i = 0; i < white_list.length; i++) {
+        var key = white_list[i];
         req.product[key] = req.body[key];
       }
       req.product.save(respond(res));
@@ -40,11 +40,12 @@ module.exports = function(products) {
     },
     addReview: function(req, res, next) {
       var review = {};
-      for (var i = 0;i < review_fields.length; i++) {
-        var key = review_fields[i];
+      for (var i = 0; i < review_white_list.length; i++) {
+        var key = review_white_list[i];
         review[key] = req.body[key];
       }
-      req.product.addReview(review, respond(res));
+      req.product.reviews.push(review);
+      req.product.save(respond(res));
     }
     
   };

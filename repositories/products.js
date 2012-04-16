@@ -14,11 +14,7 @@ module.exports = function(config) {
         if (product === null) {
           callback(null, null);
         } else {
-          product.addReview = function(review, cb) {
-            if (!this.reviews) this.reviews = [];
-            this.reviews.push(review);
-            product.save(cb);
-          };
+          if (!product.reviews) product.reviews = [];
           callback(null, product);  
         }
       });
