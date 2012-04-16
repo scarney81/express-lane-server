@@ -13,7 +13,7 @@ module.exports = function(config) {
         if (product === null) {
           callback(null, null);
         } else {
-          if (!product.reviews) product.reviews = [];
+          if (product.reviews === null) product.reviews = [];
           callback(null, product);  
         }
       });

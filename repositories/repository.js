@@ -57,7 +57,7 @@ Repository.prototype.remove = function(id, callback) {
 
 Repository.prototype.updateObjectIds = function(array, callback) {
   callback(array.map(function(item) {
-    if (item._id) {
+    if (item._id !== null) {
       item._id = item._id.toString();
     }
     return item;
