@@ -9,12 +9,12 @@ var Repository = function(config, collection) {
 Repository.prototype.all = function(callback) {
   if (callback === null) throw 'no callback specified';
 
-  var _this = this;
+  var self = this;
   this.collection.find().toArray(function(err, array) {
     if (err !== null) { 
       callback(err);
     } else {
-      _this.updateObjectIds(array, function(array) { return callback(null, array); });
+      self.updateObjectIds(array, function(array) { return callback(null, array); });
     }
   });
 };
@@ -22,13 +22,13 @@ Repository.prototype.all = function(callback) {
 Repository.prototype.single = function(id, callback) {
   if (callback === null) throw 'no callback specified';
 
-  var _this = this;
+  var self = this;
   this.collection.findOne({_id: new ObjectId(id)}, function(err, item) {
     if (err !== null) return callback(err);
     if (item === undefined) return callback(null, null);
     item._id = item._id.toString();
-    item.save = function(cb) { _this.save(item, cb); };
-    item.remove = function(cb) { _this.remove(item._id, cb); };
+    item.save = function(cb) { self.save(item, cb); };
+    item.remove = function(cb) { self.remove(item._id, cb); };
     callback(null, item);
   });
 };
@@ -50,7 +50,6 @@ Repository.prototype.save = function(model, callback) {
 Repository.prototype.remove = function(id, callback) {
   if (callback === null) throw 'no callback specified';
 
-  var _this = this;
   this.collection.remove({_id: new ObjectId(id)}, function(err, result) {
     callback(err, result);
   });
