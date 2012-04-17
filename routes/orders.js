@@ -4,17 +4,17 @@ module.exports = function(app, orders) {
 
   app.get('/orders/:username', function(req, res, next) {
     var username = req.params.username;
-    if (username) {
-      orders.findByUsername(username, function(err, data) {
-        if (err !== null) res.send(err, 500);
-        else res.json(data);
-      });
-    } else {
-      orders.all(function(err, data) {
-        if (err !== null) res.send(err, 500);
-        else res.json(data);
-      });
-    }
+    orders.findByUsername(username, function(err, data) {
+      if (err !== null) res.send(err, 500);
+      else res.json(data);
+    });
+  });
+
+  app.get('/orders', function(req, res, next) {
+    orders.all(function(err, data) {
+      if (err !== null) res.send(err, 500);
+      else res.json(data);
+    });
   });
 
   app.get('/order/:order_id', function(req, res, next) {
