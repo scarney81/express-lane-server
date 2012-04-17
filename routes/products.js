@@ -14,7 +14,7 @@ module.exports = function(app, products) {
     res.json(req.product); 
   });
 
-  app.post('/order/:order_id/complete', function(req, res, next) {
+  app.post('/product/:product_id/reviews', function(req, res, next) {
     var review = {};
     for (var i = 0; i < review_white_list.length; i++) {
       var key = review_white_list[i];
