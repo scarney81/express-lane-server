@@ -1,11 +1,11 @@
-var white_list = ['email', 'products', 'total_price', 'billing', 'shipping'];
+var white_list = ['username', 'products', 'total_price', 'billing', 'shipping'];
 
 module.exports = function(app, orders) {
-  
-  app.get('/orders', function(req, res, next) {
-    var email = req.query.email;
-    if (email) {
-      orders.findByEmail(email, function(err, data) {
+
+  app.get('/orders/:username', function(req, res, next) {
+    var username = req.params.username;
+    if (username) {
+      orders.findByUsername(username, function(err, data) {
         if (err !== null) res.send(err, 500);
         else res.json(data);
       });
@@ -16,11 +16,11 @@ module.exports = function(app, orders) {
       });
     }
   });
-  
-  app.get('/order/:order_id', function(req, res, next) { 
-    res.json(req.order); 
+
+  app.get('/order/:order_id', function(req, res, next) {
+    res.json(req.order);
   });
-  
+
   app.post('/orders', function(req, res, next) {
     var order = {};
     for (var i = 0;i < white_list.length; i++) {
@@ -28,12 +28,13 @@ module.exports = function(app, orders) {
       order[key] = req.body[key];
     }
     order.status = 'pending';
+    order.date = new Date();
     orders.save(order,function(err, data) {
       if (err !== null) res.send(err, 500);
       else res.json(data);
     });
   });
-  
+
   app.post('/order/:order_id/complete', function(req, res, next) {
     req.order.status = 'complete';
     req.order.save(function(err, data) {
@@ -41,5 +42,5 @@ module.exports = function(app, orders) {
       else res.json(data);
     });
   });
-  
+
 };
