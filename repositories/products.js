@@ -1,24 +1,21 @@
-var Repository = require('./repository');
+var Mongolian = require('mongolian')
+  , ObjectId = Mongolian.ObjectId;
 
 module.exports = function(config) {
-  var self = this;
-  self.repo = new Repository(config, 'products');
+  var db = new Mongolian(config.connectionString);
+  var collection = db.collection('products');
   
-  return {
-    all: function(callback) { self.repo.all(callback); },
-    save: function(model, callback) { self.repo.save(model, callback); },
-    remove: function(id, callback) { self.repo.remove(id, callback); },
+  var updateObjectIds = function(array, callback) {
+    callback(array.map(function(item) {
+      if (item._id !== null) {
+        item._id = item._id.toString();
+      }
+      return item;
+    }));
+  };
     
-    single: function(id, callback) {
-      self.repo.single(id, function(err, product){
-        if (product === null) {
-          callback(null, null);
-        } else {
-          if (product.reviews === null) product.reviews = [];
-          callback(null, product);  
-        }
-      });
-    }
+  return {
+
   };
 };
   

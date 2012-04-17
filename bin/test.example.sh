@@ -1,4 +1,4 @@
 #!/bin/bash
-export MONGOLAB_URI=mongodb://<user>:<password>@ds031567.mongolab.com:31567/heroku_app3627039
+export MONGOLAB_URI=mongodb://127.0.0.1:27017/express-lane
 
 mocha

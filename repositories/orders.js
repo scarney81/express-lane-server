@@ -6,7 +6,6 @@ module.exports = function(config) {
   return {
     all: function(callback) { repo.all(callback); },
     save: function(model, callback) { repo.save(model, callback); },
-    remove: function(id, callback) { repo.remove(id, callback); },
     single: function(id, callback) { repo.single(id, callback); },
 
     findByUsername: function(username, callback) {

@@ -54,7 +54,7 @@ describe('OrderRepository', function() {
     orders.all(function(err, orders) {
       should.not.exist(err);
       should.exist(orders);
-      orders.length.should.equal(1);
+      orders.length.should.not.equal(0);
       done();
     });
   });
@@ -74,7 +74,7 @@ describe('OrderRepository', function() {
     orders.findByUsername('twitterHandle', function(err, orders) {
       should.not.exist(err);
       should.exist(orders);
-      orders.length.should.equal(1);
+      orders.length.should.not.equal(0);
       done();
     });
   });
@@ -87,13 +87,6 @@ describe('OrderRepository', function() {
       should.exist(order);
       order.should.have.property('_id');
       order.email.should.equal('handleTwitter');
-      done();
-    });
-  });
-
-  it('should remove an order', function(done) {
-    orders.remove(model._id, function(err, response) {
-      response.should.equal(1);
       done();
     });
   });

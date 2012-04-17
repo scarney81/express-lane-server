@@ -1,7 +1,15 @@
 var express = require('express'),
-    port = require('./config').port,
-    middleware = require('./middleware'),
-    routes = require('./routes');
+    config = require('./config'),
+    port = config.port,
+    repos = {
+      orders: new require('./repositories/orders')(config),
+      products: new require('./repositories/products')(config)
+    },
+    order_id = require('./middleware/order_id')(repos.orders),
+    routes = {
+      products: require('./routes/products'),
+      orders: require('./routes/orders')
+    };
 
 var app = express.createServer();
 app.configure(function(){
@@ -11,12 +19,11 @@ app.configure(function(){
 });
 
 //middleware
-app.param('product_id', middleware.product_id);
-app.param('order_id', middleware.order_id);
+app.param('order_id', order_id);
 
 // product routes
-routes.products(app);
-routes.orders(app);
+routes.products(app, repos.products);
+routes.orders(app, repos.orders);
 
 app.listen(port);
 console.log("express-lane-server running on port %d", app.address().port);

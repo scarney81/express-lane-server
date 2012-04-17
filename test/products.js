@@ -53,12 +53,4 @@ describe('ProductRepository', function() {
       done();
     });
   });
-
-  it('should remove a product', function(done) {
-    products.remove(model._id, function(err, response) {
-      if (err) return done(err);
-      response.should.equal(1);
-      done();
-    });
-  });
 });
