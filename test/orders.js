@@ -6,7 +6,7 @@ var should   = require('should')
 describe('OrderRepository', function() {
 
   var model = {
-    email: 'email@email.com',
+    username: 'twitterHandle',
     status: 'pending',
     products: [
     {
@@ -65,13 +65,13 @@ describe('OrderRepository', function() {
 
       should.exist(order);
       order.should.have.property('_id');
-      order.email.should.equal(model.email);
+      order.username.should.equal(model.username);
       done();
     });
   });
 
-  it('should retrieve a list of orders by email', function(done) {
-    orders.findByEmail('email@email.com', function(err, orders) {
+  it('should retrieve a list of orders by username', function(done) {
+    orders.findByUsername('twitterHandle', function(err, orders) {
       should.not.exist(err);
       should.exist(orders);
       orders.length.should.equal(1);
@@ -80,13 +80,13 @@ describe('OrderRepository', function() {
   });
 
   it('should update an order', function(done) {
-    model.email = 'another@node.com';
+    model.email = 'handleTwitter';
     orders.save(model, function(err, order) {
       if (err) return done(err);
 
       should.exist(order);
       order.should.have.property('_id');
-      order.email.should.equal('another@node.com');
+      order.email.should.equal('handleTwitter');
       done();
     });
   });
